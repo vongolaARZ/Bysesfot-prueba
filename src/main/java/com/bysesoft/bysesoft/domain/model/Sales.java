@@ -18,7 +18,7 @@ public class Sales {
     @Column(name = "sale_id")
     private Long saleId;
 
-    @Column(nullable = false,insertable = false)
+    @Column(insertable = false)
     private Double total;
 
     @ManyToOne

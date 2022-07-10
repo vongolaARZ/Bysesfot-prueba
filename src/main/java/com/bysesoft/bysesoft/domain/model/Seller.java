@@ -20,10 +20,10 @@ public class Seller {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long sellerId;
 
-    @Column(name = "name",nullable = false,insertable = false)
+    @Column(name = "name")
     private String name;
 
-    @Column(name = "salary",nullable = false,insertable = false)
+    @Column(name = "salary")
     private Double salary;
 
     @OneToMany
