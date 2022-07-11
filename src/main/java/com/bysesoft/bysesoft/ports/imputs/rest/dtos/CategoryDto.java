@@ -6,7 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 @Getter
 @Setter
@@ -14,7 +14,7 @@ import java.util.List;
 @AllArgsConstructor
 public class CategoryDto {
 
-    @NotBlank
+    @NotNull
     private String name;
     @JsonIgnoreProperties(value = "category")
     private List<ProductDto> product;

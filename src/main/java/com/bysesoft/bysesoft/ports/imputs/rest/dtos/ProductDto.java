@@ -20,7 +20,7 @@ public class ProductDto {
     @NotNull
     private Double price;
 
-    @NotBlank
+    @NotNull
     @JsonIgnoreProperties(value = "product")
     private CategoryDto  category;
 
