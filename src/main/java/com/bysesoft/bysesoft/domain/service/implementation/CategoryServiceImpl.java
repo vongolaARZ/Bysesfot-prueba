@@ -1,5 +1,6 @@
 package com.bysesoft.bysesoft.domain.service.implementation;
 
+import com.bysesoft.bysesoft.common.NotFoundException;
 import com.bysesoft.bysesoft.domain.model.Category;
 import com.bysesoft.bysesoft.domain.repository.CategoryRepository;
 import com.bysesoft.bysesoft.domain.service.CategoryService;
@@ -24,7 +25,7 @@ public class CategoryServiceImpl implements CategoryService {
     @Transactional(readOnly = true)
     public Category findByName(String name) {
        return categoryRepository.findByName(name)
-                .orElseThrow(()-> new RuntimeException("no existe la categoria"));
+                .orElseThrow(()-> new NotFoundException("no se encontro una categoria bajo este nombre"));
     }
 
     @Override
@@ -32,7 +33,7 @@ public class CategoryServiceImpl implements CategoryService {
     public List<Category> findAll() {
         List<Category> categories = categoryRepository.findAll();
         if(categories.isEmpty()){
-            throw new RuntimeException("No hay categorias");
+            throw new NotFoundException("no se emcontraron categorias");
         }else {
             return categories;
         }
@@ -42,7 +43,7 @@ public class CategoryServiceImpl implements CategoryService {
     @Transactional
     public void delete(Long id) {
         Category category = categoryRepository.findById(id)
-                .orElseThrow(()->new RuntimeException("no existe la categoria"));
+                .orElseThrow(()->new NotFoundException("no existe una categoria bajo este id"));
         categoryRepository.deleteById(category.getCategoryId());
     }
 }

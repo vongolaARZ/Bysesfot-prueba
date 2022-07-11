@@ -12,6 +12,7 @@ public class SellerDto {
 
     private String name;
     private Double salary;
+
     private List<SalesDto> sales;
 
     public SellerDto(String name, Double salary){

@@ -1,5 +1,6 @@
 package com.bysesoft.bysesoft.ports.imputs.rest.dtos;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,6 +15,8 @@ import java.util.List;
 public class SalesDto {
 
     private Double total;
+
+    @JsonIgnoreProperties(value = "sales")
     private SellerDto seller;
     private Double commission;
     private List<ProductDto> product;

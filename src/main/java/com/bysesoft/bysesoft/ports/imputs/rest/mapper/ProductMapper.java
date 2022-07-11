@@ -1,30 +1,40 @@
 package com.bysesoft.bysesoft.ports.imputs.rest.mapper;
 
+import com.bysesoft.bysesoft.domain.model.Category;
 import com.bysesoft.bysesoft.domain.model.Product;
+import com.bysesoft.bysesoft.ports.imputs.rest.dtos.CategoryDto;
 import com.bysesoft.bysesoft.ports.imputs.rest.dtos.ProductDto;
+import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-
+@Component
 public class ProductMapper {
 
-    public static ProductDto toDto(Product product){
+    public ProductDto toDto(Product product){
 
         ProductDto productDto = new ProductDto();
 
         productDto.setName(product.getName());
         productDto.setPrice(product.getPrice());
-        productDto.setCategory(product.getCategory().getName());
+        productDto.setCategory(new CategoryDto(product.getCategory().getName()));
 
         return productDto;
     }
 
-    public static List<ProductDto> productToDtoList(List<Product> products){
-        List<ProductDto> productDtoList = products
-                .stream().map(product -> {
-                    return new ProductDto(product.getName(),product.getPrice(),product.getCategory().getName());
-                }).collect(Collectors.toList());
-        return productDtoList;
+    public List<ProductDto> ToDtoList(List<Product> products){
+
+        return products
+                .stream()
+                .map(this::toDto)
+                .collect(Collectors.toList());
+    }
+
+    public Product toEntity(ProductDto productDto){
+        Product product = new Product();
+        product.setName(productDto.getName());
+        product.setCategory(new Category(productDto.getCategory().getName()));
+        product.setPrice(productDto.getPrice());
+        return product;
     }
 }

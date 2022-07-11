@@ -29,4 +29,9 @@ public class Seller {
     @OneToMany
     @JsonIgnoreProperties(value = {"seller"})
     private List<Sales> sales;
+
+    public Seller(String name, Double salary) {
+        this.name = name;
+        this.salary = salary;
+    }
 }
