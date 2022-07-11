@@ -25,4 +25,8 @@ public class Category {
     @ToString.Exclude
     @JsonIgnoreProperties(value = {"category"})
     private List<Product> products;
+
+    public Category(String name) {
+        this.name = name;
+    }
 }

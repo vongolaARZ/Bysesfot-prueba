@@ -1,5 +1,6 @@
 package com.bysesoft.bysesoft.domain.service.implementation;
 
+import com.bysesoft.bysesoft.common.NotFoundException;
 import com.bysesoft.bysesoft.domain.model.Seller;
 import com.bysesoft.bysesoft.domain.repository.SellerRepository;
 import com.bysesoft.bysesoft.domain.service.SellerService;
@@ -23,7 +24,7 @@ public class SellerServiceImpl implements SellerService {
     @Override
     public Seller getSellerByName(String name) {
         return sellerRepository.findByName(name)
-                .orElseThrow(()->new RuntimeException("no se encontro"));
+                .orElseThrow(()->new NotFoundException("no se encontro un vendedor bajo este nombre"));
     }
 
     @Override
@@ -31,7 +32,7 @@ public class SellerServiceImpl implements SellerService {
         List<Seller> sellers = sellerRepository.findAll();
 
         if(sellers.isEmpty()){
-            throw new RuntimeException("no hay vendedores");
+            throw new NotFoundException("No se encontraron vendedores");
         }else {
             return  sellers;
         }
@@ -40,14 +41,8 @@ public class SellerServiceImpl implements SellerService {
     @Override
     public void deleteById(Long id) {
         Seller seller = sellerRepository.findById(id)
-                .orElseThrow(()-> new RuntimeException("no se encontro"));
+                .orElseThrow(()-> new NotFoundException("no se encontro un vendedor bajo este id"));
 
         sellerRepository.deleteById(id);
-    }
-
-    @Override
-    public Seller findById(Long id) {
-        return sellerRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("no se encontro"));
     }
 }

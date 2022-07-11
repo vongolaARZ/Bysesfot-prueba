@@ -10,5 +10,4 @@ public interface SellerService {
     Seller getSellerByName(String name);
     List<Seller> getAll();
     void deleteById(Long id);
-    Seller findById(Long id);
 }

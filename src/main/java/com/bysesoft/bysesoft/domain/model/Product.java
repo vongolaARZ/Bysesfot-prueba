@@ -20,12 +20,12 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long productId;
 
-    @Column(name = "name", nullable = false, updatable = false)
+    @Column(name = "name", updatable = false)
     private String name;
 
-    @Column(name = "price",nullable = false,updatable = false)
+    @Column(name = "price",updatable = false)
     private Double price;
-    @ManyToOne
+    @ManyToOne()
     @JoinColumn(name = "categoryId")
     @JsonIgnoreProperties(value = {"products"})
     private Category category;
@@ -35,4 +35,9 @@ public class Product {
     @JsonIgnore
     private List<Sales> sales;
 
+    public Product(String name, Double price, Category category) {
+        this.name = name;
+        this.price = price;
+        this.category = category;
+    }
 }

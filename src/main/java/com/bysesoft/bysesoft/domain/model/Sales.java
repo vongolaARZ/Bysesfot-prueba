@@ -18,7 +18,7 @@ public class Sales {
     @Column(name = "sale_id")
     private Long saleId;
 
-    @Column(nullable = false,insertable = false)
+    @Column
     private Double total;
 
     @ManyToOne
@@ -32,4 +32,7 @@ public class Sales {
     @ManyToMany
     @ToString.Exclude
     private List<Product> productList;
+
+
+
 }
