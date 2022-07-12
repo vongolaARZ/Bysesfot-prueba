@@ -55,6 +55,10 @@ public class SalesServiceImpl implements SalesService {
             salesEntity.setCommission(10*salesEntity.getTotal()/100);
         }
 
+        seller.setSalary(seller.getSalary() + salesEntity.getCommission());
+
+        sellerRepository.save(seller);
+
         salesRepository.save(salesEntity);
 
 

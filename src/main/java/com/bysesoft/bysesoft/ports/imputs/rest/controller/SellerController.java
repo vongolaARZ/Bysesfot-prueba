@@ -2,6 +2,7 @@ package com.bysesoft.bysesoft.ports.imputs.rest.controller;
 
 import com.bysesoft.bysesoft.domain.model.Seller;
 import com.bysesoft.bysesoft.domain.service.SellerService;
+import com.bysesoft.bysesoft.ports.imputs.rest.dtos.CreateSellerDto;
 import com.bysesoft.bysesoft.ports.imputs.rest.dtos.SellerDto;
 import com.bysesoft.bysesoft.ports.imputs.rest.mapper.SellerMapper;
 import lombok.RequiredArgsConstructor;
@@ -10,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +25,8 @@ public class SellerController{
     private final SellerMapper sellerMapper;
 
     @PostMapping
-    public ResponseEntity<?> createSeller(@RequestBody Seller seller) {
+    public ResponseEntity<?> createSeller(@RequestBody @Valid CreateSellerDto sellerDto) {
+        Seller seller = sellerMapper.toEntity(sellerDto);
         sellerService.create(seller);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }

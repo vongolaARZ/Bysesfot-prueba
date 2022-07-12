@@ -3,10 +3,7 @@ package com.bysesoft.bysesoft.ports.imputs.rest.mapper;
 import com.bysesoft.bysesoft.domain.model.Product;
 import com.bysesoft.bysesoft.domain.model.Sales;
 import com.bysesoft.bysesoft.domain.model.Seller;
-import com.bysesoft.bysesoft.ports.imputs.rest.dtos.CategoryDto;
-import com.bysesoft.bysesoft.ports.imputs.rest.dtos.ProductDto;
-import com.bysesoft.bysesoft.ports.imputs.rest.dtos.SalesDto;
-import com.bysesoft.bysesoft.ports.imputs.rest.dtos.SellerDto;
+import com.bysesoft.bysesoft.ports.imputs.rest.dtos.*;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -46,5 +43,13 @@ public class SellerMapper {
                 .stream().map(this::toDto).toList();
 
         return sellerDtos;
+    }
+
+    public Seller toEntity(CreateSellerDto createSellerDto){
+        Seller seller = new Seller();
+        seller.setName(createSellerDto.getName());
+        seller.setSalary(createSellerDto.getSalary());
+
+        return seller;
     }
 }

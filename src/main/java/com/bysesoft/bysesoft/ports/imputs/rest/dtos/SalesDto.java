@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Getter
@@ -19,6 +20,7 @@ public class SalesDto {
     @JsonIgnoreProperties(value = "sales")
     private SellerDto seller;
     private Double commission;
+    @NotNull
     private List<ProductDto> product;
 
     public SalesDto(Double total, Double commission, List<ProductDto> product) {

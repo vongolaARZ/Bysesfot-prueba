@@ -23,7 +23,6 @@ public class Sales {
 
     @ManyToOne
     @JoinColumn(name = "sellerId")
-    @JsonIgnoreProperties(value = {"sales"})
     private Seller seller;
 
     @Column

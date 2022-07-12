@@ -20,14 +20,13 @@ public class Seller {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long sellerId;
 
-    @Column(name = "name")
+    @Column(name = "name", nullable = false)
     private String name;
 
     @Column(name = "salary")
     private Double salary;
 
-    @OneToMany
-    @JsonIgnoreProperties(value = {"seller"})
+    @OneToMany(mappedBy = "seller")
     private List<Sales> sales;
 
     public Seller(String name, Double salary) {
